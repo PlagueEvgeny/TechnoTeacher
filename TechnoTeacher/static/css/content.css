@@ -99,6 +99,7 @@
 }
 
 .search_course_link {
+    grid-column-gap: 10px;
     display: grid;
     grid-template-columns: 2fr 5fr;
     margin: 30px 0;

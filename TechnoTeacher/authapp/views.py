@@ -1,11 +1,11 @@
 import django.contrib.auth as auth
-from rest_framework.viewsets import ModelViewSet
-from django.contrib.auth.views import LoginView
+from django.contrib import messages
 from authapp.models import UserProfile
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from authapp.forms import LoginForm, RegisterForm, ProfileForm
+from django.contrib.auth.decorators import login_required
 
 def login(request):
     if request.method == 'POST':
@@ -17,7 +17,7 @@ def login(request):
         form = LoginForm()
 
     context = {
-        'page_title': 'авторизация',
+        'page_title': 'Авторизация',
         'form': form,
     }
     return render(request, 'authapp/login.html', context)
@@ -38,19 +38,20 @@ def register(request):
         form = RegisterForm()
 
     context = {
-        'page_title': 'регистрация',
+        'page_title': 'Регистрация',
         'form': form,
     }
     return render(request, 'authapp/register.html', context)
 
-
+@login_required
 def profile(request):
     if request.method == 'POST':
         postdata = request.POST.copy()
         form = ProfileForm(postdata)
+        messages.success(request, 'Your profile is updated successfully')
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('auth:login'))
+            return HttpResponseRedirect(reverse('auth:profile'))
     else:
         form = ProfileForm()
 
