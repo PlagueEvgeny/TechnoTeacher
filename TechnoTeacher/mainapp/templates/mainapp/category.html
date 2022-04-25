@@ -1,0 +1,59 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+{% load static %}
+<div class="content">
+    <div class="content_cource_active">
+        <div>
+            {% for item in category %}
+            <p class="content_p">Направления</p>
+            <h1 class="content_h1 title_cource">{{ item.name }}</h1>
+            {% endfor %}
+        </div>
+        <div></div>
+    </div>
+    <div class="content_cource">
+        <div>
+            {% for item in categories %}
+            <a href="{% url 'main:category' item.pk %}">
+                <div class="link_cource link_cource_active">
+                    {{ item.name }}
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        <div></div>
+    </div>
+    <div class="search_course">
+        <form action="" method="get">
+            <input type="search" name="search" class="form_search">
+        </form>
+    </div>
+    <hr>
+    <div class="search_course_link">
+        <div></div>
+        <div>
+            <h1 class="course_h1">Курсы</h1>
+            <div class="course_card">
+                {% for item in course %}
+                <div class="card">
+                    <div class="div_card_title">
+                        <div>
+                        </div>
+                        <div>
+                            <h1 class="card_title">{{item.name}}</h1>
+                        </div>
+                        <div>
+                            <time> <b>12</b> месяцев </time>
+                        </div>
+                    </div>
+                    <div class="div_card_image">
+                        <img src="{{item.cover.url}}" alt="" class="card_image">
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

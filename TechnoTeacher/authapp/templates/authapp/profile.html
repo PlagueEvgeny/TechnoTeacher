@@ -1,0 +1,23 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block content %}
+<div class="content">
+<div class="profile_about">  
+    <div class="about_form">О себе
+        <img src=" {{user.avatar.url}} " alt="">
+    </div>
+    <div>
+        <form action="" method="get">
+            <ui-sb-input class="ui_input">
+                <input type="text" class="form-profile" value="{{ user.first_name }}" placeholder="Имя">
+        <input type="text" class="form-profile" value="{{ user.last_name }}" placeholder="Фамилия">
+        <input type="text" class="form-profile" value="{{ user.username }}" placeholder="Логин">
+        <input type="email" class="form-profile" value="{{ user.email }}" readonly placeholder="Почта">
+        <button type="submit" class="button-profile">Сохранить</button>
+            </ui-sb-input>
+        </form>
+        
+</div>
+</div>
+</div>
+{% endblock %}

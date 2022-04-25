@@ -1,0 +1,24 @@
+.content_chat{
+    margin: 0 10%;
+}
+.dialog{
+    display: grid;
+    gap: 10px;
+    padding: 10px;
+    grid-template-columns: 1fr 2fr;
+}
+.dialog-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    font-size: 30px;
+  }
+.create_dialog{
+    grid-column: 1;
+}
+.create_dialog_2{
+    grid-row: 2 / span 2;
+}
+.messanger {
+    grid-column: 2;
+    grid-row: 2 / span 2;
+  }

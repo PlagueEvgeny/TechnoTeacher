@@ -1,0 +1,38 @@
+.profile_about{
+    display: grid;
+    background-color: rgb(241, 241, 241);
+    border-radius: 50px;
+    grid-template-columns: 40% 60%;
+    padding: 20px 0;
+    margin: 50px 0;
+}
+.about_form{
+    justify-self: center;
+}
+.ui_input{
+    display: block;
+    width: 75%;
+}
+input {
+    display:block;
+    width:100%;
+    margin:10px 0;
+    padding:10px;
+  }
+.form-profile {
+    border-radius:10px;
+    border: 1px solid #eee;
+    transition: .3s border-color;
+  }
+.form-profile:hover {
+    border: 1px solid #aaa;
+  }
+.button-profile{
+    border-radius: 10px;
+    padding: 10px;
+}
+.button-profile:hover{
+    background-color: #44883c;
+    color: #fff;
+    cursor: pointer;
+}

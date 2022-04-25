@@ -1,0 +1,146 @@
+.content {
+    margin: 0 10%;
+}
+
+.content_cource {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 50px 0;
+}
+
+.content_cource_active {
+    display: grid;
+    grid-template-columns: 1fr;
+    background-color: rgb(241, 241, 241);
+    border-radius: 50px;
+    padding: 80px 20px;
+    margin: 30px 0;
+}
+
+.content_h1 {
+    font-size: 48px;
+}
+
+.content_p {
+    font-size: 12px;
+    padding-left: 4px;
+
+    color: rgb(156, 171, 158);
+}
+
+.link_cource {
+    border-color: black;
+    background-color: #fff;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 50px;
+    padding: 10px;
+    margin: 10px 10px 10px 0;
+    max-width: fit-content;
+    display: inline-grid;
+}
+
+.link_cource:hover {
+    background-color: #44883c;
+    border-color: #44883c;
+    color: #fff;
+}
+
+.content_events {
+    margin: 50px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.content_events_title {
+    margin: 50px 0;
+    display: grid;
+    grid-template-columns: 80% 20%;
+}
+
+.events_image {
+    border-radius: 10px;
+    width: 100%;
+}
+
+.events_all {
+    display: grid;
+}
+
+.events_all_link {
+    justify-self: end;
+    align-self: flex-end
+}
+
+.content_events_item {
+    margin: 0 10px;
+}
+
+.link_cource_active:active {
+    background-color: #44883c;
+    border-color: #44883c;
+    color: #fff;
+}
+
+
+.form_search {
+    height: 40px;
+    width: 200px;
+    background-color: rgb(241, 241, 241);
+    border-radius: 5px;
+}
+
+.form_search:focus-visible {
+    border: 1px solid;
+}
+
+.search_course {
+    margin: 30px 0;
+}
+
+.search_course_link {
+    display: grid;
+    grid-template-columns: 2fr 5fr;
+    margin: 30px 0;
+}
+
+.course_h1 {
+    font-size: 32px;
+}
+
+.course_card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 30px 0;
+}
+
+.card {
+    display: grid;
+    grid-column-gap: 10px;
+    grid-template-columns: 1fr 140px;
+    min-height: 174px;
+    border-radius: 10px;
+    padding: 24px;
+    background-color: #387948;
+}
+
+.div_card_title {
+    display: grid;
+    grid-template-rows: 1fr 7fr 1fr;
+}
+
+.card_title {
+    font-size: 20px;
+    padding: 20px 0;
+}
+
+.div_card_image {
+    display: grid;
+}
+
+.card_image {
+    height: 140px;
+    width: 100%;
+    align-self: center;
+
+}
