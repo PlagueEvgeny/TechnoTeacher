@@ -74,7 +74,7 @@ a{
 
 .footer{
     display: grid;
-    grid-template-columns: 20% 70% 10%;
+    grid-template-columns: 12% 75% 13%;
     height: 70px;
     margin: 100px 15px 0 15px;
 }

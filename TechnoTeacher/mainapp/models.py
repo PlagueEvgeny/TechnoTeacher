@@ -4,6 +4,7 @@ from django.db import models, transaction, DatabaseError
 class Category(models.Model):
     name = models.CharField(max_length=128, unique=True)
     desc = models.TextField()
+    slug = models.SlugField(max_length=250) 
     is_active = models.BooleanField(default=True, db_index=True)
 
     class Meta:
@@ -32,6 +33,7 @@ class Category(models.Model):
 class Course(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='course')
     name = models.CharField(max_length=128)
+    slug = models.SlugField(max_length=250) 
     cover = models.ImageField(verbose_name='Обложка', upload_to='images/course/')
     desc = models.TextField()
     price = models.DecimalField(verbose_name='Стоимость', max_digits=6, decimal_places=2, default=0)

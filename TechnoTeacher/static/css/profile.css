@@ -1,10 +1,43 @@
+.profile_top_about{
+    margin: 50px 0;
+    display: grid;
+    grid-template-columns: 35% 30% 35%;
+}
+.about_image{
+    height: 100px;
+    width: 100px;
+}
+.top_about{
+    display: grid;
+    height: 100px;
+    grid-template-columns: 1fr 2fr;
+    justify-items: center;
+    align-items: center;
+}
+.profile_image{
+    object-fit: cover;
+    object-position: 50% 50%;
+    border-radius: 100px;
+    height: 100%;
+    width: 100%;
+}
+#id_avatar {
+  display: none;
+}
+.profile_last{
+    padding-bottom: 10px;
+    font-size: 20px;
+}
+.profile_email{
+    font-size: 12px
+}
 .profile_about{
     display: grid;
     background-color: rgb(241, 241, 241);
     border-radius: 50px;
     grid-template-columns: 40% 60%;
     padding: 20px 0;
-    margin: 50px 0;
+    margin: 20px 0;
 }
 .about_form{
     justify-self: center;
@@ -15,7 +48,6 @@
 }
 input {
     display:block;
-    width:100%;
     margin:10px 0;
     padding:10px;
   }
@@ -36,3 +68,56 @@ input {
     color: #fff;
     cursor: pointer;
 }
+.password_about{
+    display: grid;
+    background-color: rgb(241, 241, 241);
+    border-radius: 50px;
+    grid-template-columns: 40% 60%;
+    padding: 20px 0;
+    margin: 20px 0;
+}
+
+
+.login_form{
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    margin-top: 100px;
+}
+.login_form_div{
+    display: grid;
+}
+.login_form_p{
+    justify-self: center;
+    font-size: 12px;
+    color: #aaa;
+}
+.login_form_button{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.a_register{
+    display: grid;
+    background-color: #e9e9ed;
+    text-align: center;
+}
+.button_login{
+    margin: 0 10px;
+}
+.pol_sog{
+    display: grid;
+    grid-template-columns: 20% 80%;
+    padding: 10px 0;
+    margin: 10px 0;
+}
+.sog_check{
+    border-radius: 100px;
+    height: 20px;
+}
+.sog_p{
+    font-size: 10px;
+}
+select {
+    display:block;
+    margin:10px 0;
+    padding:10px;
+  }

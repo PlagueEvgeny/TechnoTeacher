@@ -1,7 +1,6 @@
 {% extends 'mainapp/base.html' %}
 {% block content %}
 {% load static %}
-<div class="content">
     <div class="content_cource_active">
         <div>
             {% for item in category %}
@@ -14,7 +13,7 @@
     <div class="content_cource">
         <div>
             {% for item in categories %}
-            <a href="{% url 'main:category' item.pk %}">
+            <a href="{% url 'main:category' item.id item.slug %}">
                 <div class="link_cource link_cource_active">
                     {{ item.name }}
                 </div>
@@ -37,6 +36,7 @@
             <h1 class="course_h1">Курсы</h1>
             <div class="course_card">
                 {% for item in course %}
+                <a href="{% url 'main:course' item.category_id item.slug %}">
                 <div class="card">
                     <div class="div_card_title">
                         <div>
@@ -52,10 +52,10 @@
                         <img src="{{item.cover.url}}" alt="" class="card_image">
                     </div>
                 </div>
+                </a>
                 {% endfor %}
             </div>
         </div>
     </div>
-</div>
 
 {% endblock %}

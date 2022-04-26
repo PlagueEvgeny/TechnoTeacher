@@ -1,12 +1,11 @@
 {% extends 'mainapp/base.html' %}
 {% block content %}
 {% load static %}
-<div class="content">
     <div class="content_cource">
         <div>
             <h1 class="content_h1 title_cource">Направления</h1>
             {% for item in category %}
-            <a href="{% url 'main:category' item.pk %}" >
+            <a href="{% url 'main:category' item.id item.slug %}" >
                 <div class="link_cource">
                     {{ item.name }}
                 </div>
@@ -25,10 +24,9 @@
         <div class="content_events_item">
             <img src="{% static 'img/logo_kv.jpg' %}" alt="Avatar" class="events_image">
         </div>
-        <div >
+        <div class="content_events_item">
             <img src="{% static 'img/logo_kv.jpg' %}" alt="Avatar" class="events_image">
         </div>
     </div>
-</div>
 
 {% endblock %}

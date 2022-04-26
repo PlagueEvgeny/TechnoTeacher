@@ -1,16 +1,40 @@
 {% extends 'mainapp/base.html' %}
-
 {% block content %}
-<div class="">
-    <h1>Регистрация</h1>
-    <div class="form">
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit"
-                   class=""
-                   value="зарегистрироваться">
-        </form>
-    </div>
-</div>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="login_form">
+            <div>
+            </div>
+            <div class="login_form_div">
+                <p class="login_form_p">Войти через соцсети</p>
+
+                <p class="login_form_p">Регистрация через email</p>
+                <input type="text" class="form-profile" id="id_username" name="username" value="{{ user.username }}" placeholder="Логин">
+                <input type="text" class="form-profile" id="id_first_name" name="first_name" value="{{ user.first_name }}" placeholder="Имя">
+                <input type="text" class="form-profile" id="id_last_name" name="last_name" value="{{ user.last_name }}" placeholder="Фамилия">
+                <input type="email" class="form-profile" id="id_email" name="email" value="{{ user.email }}" placeholder="Почта">
+                <select name="role" class="form-profile role" required="" id="id_role">
+                    <option value="" selected="">---------</option>
+                  
+                    <option value="s">Student</option>
+                  
+                    <option value="t">Teacher</option>
+                  
+                </select>
+                <input type="date" name="date_birth" class="form-profile date_birth" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2} required id="id_date_birth">
+                <input type="password" class="form-profile" id="id_password1" name="password1" value="{{ user.password1 }}" placeholder="Пароль">
+                <input type="password" class="form-profile" id="id_password2" name="password2" value="{{ user.password2 }}" placeholder="Повторить пароль">
+                <div class="pol_sog">
+                    <input type="checkbox" name="" id="" class="sog_check">
+                    <p class="sog_p">Я подтверждаю согласие на обработку персональных данных в соответствии с
+                    условиями Политики конфиденциальности, ознакомился и согласен с
+                    условиями Пользовательского соглашения</p>
+                </div>
+                <button type="submit" class="button-profile form-profile button_login">Зарегистрироваться</button>
+
+            </div>
+            <div>
+            </div>
+        </div>
+    </form>
 {% endblock %}

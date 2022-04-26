@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 from authapp.models import UserProfile
+import django.forms as forms
 
 
 class LoginForm(AuthenticationForm):
@@ -27,12 +28,14 @@ class ProfileForm(UserChangeForm):
     class Meta:
         model = UserProfile
         fields = ('username', 'first_name', 'last_name',
-                  'email',)
+                  'email', 'avatar')
 
     def __init__(self, *args, **kwargs):
-        super(UserChangeForm, self).__init__(*args, **kwargs)
-        if self.instance and self.instance.pk:
-            # Since the pk is set this is not a new instance
-            self.fields['username'] = self.instance.username
-            self.fields['username'].widgets.attrs['readonly'] = True
-            
+        super().__init__(*args, **kwargs)
+        for name, item in self.fields.items():
+            item.widget.attrs['class'] = f'form-profile {name}'
+            item.help_text = ''
+            if name == 'password':
+                item.widget = forms.HiddenInput()
+
+    

@@ -1,17 +1,23 @@
 {% extends 'mainapp/base.html' %}
-<title>{{ page_title|capfirst }}</title>
 {% block content %}
-<h1>Авторизация</h1>
-<div>
-    <div>
-        <form method="post" class="login-form">
+        <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.as_p }}
-            <br>
-            <input class="" type="submit" value="Войти">
-            <p><a href="{% url 'auth:register' %}">Зарегистрироваться</a></p>
-        </form>
-    </div>
+            <div class="login_form">
+                <div>
+                </div>
+                <div class="login_form_div">
+                    <p class="login_form_p">Войти через соцсети</p>
 
-</div>
+                    <p class="login_form_p">Войти через email</p>
+                    <input type="text" class="form-profile" id="id_username" name="username" value="{{ user.username }}" placeholder="Логин">
+                    <input type="password" class="form-profile" id="id_password" name="password" value="{{ user.password }}" placeholder="Пароль">
+                    <div class="login_form_button">
+                        <button type="submit" class="button-profile form-profile button_login">Войти</button>
+                        <a href="{% url 'auth:register' %}" class="a_register button_login button-profile form-profile">Зарегистрироваться</a>
+                    </div>
+                </div>
+                <div>
+                </div>
+            </div>
+        </form>
 {% endblock %}

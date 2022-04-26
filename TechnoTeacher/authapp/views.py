@@ -17,7 +17,7 @@ def login(request):
         form = LoginForm()
 
     context = {
-        'page_title': 'Авторизация',
+        'title': 'Авторизация',
         'form': form,
     }
     return render(request, 'authapp/login.html', context)
@@ -38,25 +38,25 @@ def register(request):
         form = RegisterForm()
 
     context = {
-        'page_title': 'Регистрация',
+        'title': 'Регистрация',
         'form': form,
     }
     return render(request, 'authapp/register.html', context)
 
+
 @login_required
 def profile(request):
     if request.method == 'POST':
-        postdata = request.POST.copy()
-        form = ProfileForm(postdata)
+        form = ProfileForm(request.POST, request.FILES, instance=request.user)
         messages.success(request, 'Your profile is updated successfully')
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('auth:profile'))
     else:
-        form = ProfileForm()
+        form = ProfileForm(instance=request.user)
 
     context = {
-        'page_title': 'Профиль',
+        'title': 'Профиль',
         'form': form,
     }
     return render(request, 'authapp/profile.html', context)
