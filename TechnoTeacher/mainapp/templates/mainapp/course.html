@@ -2,11 +2,12 @@
 {% block content %}
 {% load static %}
 <div class="course">
-    <div>
+    <div style="display: grid;">
         <h1 class="about_course_h1">
             {{course.name}}
         </h1>
         <p class="about_course_p">{{course.desc}}</p>
+        <a href="{% url 'main:add_order' course.id %}" class="add_order">Записаться</a>
     </div>
     <div class="course_cover">
         <img src="{{course.cover.url}}" class="about_course_cover" alt="">

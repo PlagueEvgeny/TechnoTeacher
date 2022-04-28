@@ -57,4 +57,26 @@
         </div>
     </div>
 </form>
+<div class="user_order">
+    <div class="about_form">Ваши курсы</div>
+    <div class="user_order_div">
+        {% if order %}
+        {% for item in order %}
+            <a href="{% url 'main:course' item.course.category_id item.course.slug %}" class="order_card">
+                <div class="order_card_top">
+                    <h1 class="order_card_h">
+                        {{ item.course.name|capfirst }}
+                    </h1>
+                    <div class="order_card_top_div">
+                        <img src="{% static 'img/icon/paz.svg' %}" alt="" class="order_card_top_image">
+                    </div>
+                </div>
+                <p class="order_card_p">{{ item.course.desc|capfirst|truncatechars:100 }}</p>
+        </a>
+        {% endfor %}
+    {% else %}
+        <h3>Заказов нету</h3>
+    {% endif %}
+    </div>
+</div>
 {% endblock %}

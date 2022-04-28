@@ -25,6 +25,7 @@
     <div class="search_course">
 
     </div>
+
     <hr>
     <div class="search_course_link">
         <div style="border-right: 1px solid;">
@@ -36,24 +37,27 @@
             <h1 class="course_h1">Курсы</h1>
             <div class="course_card">
                 {% for item in course %}
-                <a href="{% url 'main:course' item.category_id item.slug %}">
-                <div class="card">
-                    <div class="div_card_title">
-                        <div>
+                <a href="{% url 'main:course' item.category_id item.slug %}">                
+                    <div class="card">
+                        <div class="div_card_title">
+                            <div>
+                            </div>
+                            <div>
+                                <h1 class="card_title">{{item.name}}</h1>
+                            </div>
+                            <div>
+                                <time> <b>12</b> месяцев </time>
+                            </div>
                         </div>
-                        <div>
-                            <h1 class="card_title">{{item.name}}</h1>
-                        </div>
-                        <div>
-                            <time> <b>12</b> месяцев </time>
+                        <div class="div_card_image">
+                            <img src="{{item.cover.url}}" alt="" class="card_image">
                         </div>
                     </div>
-                    <div class="div_card_image">
-                        <img src="{{item.cover.url}}" alt="" class="card_image">
-                    </div>
-                </div>
-                </a>
+                    </a>
+
+
                 {% endfor %}
+
             </div>
         </div>
     </div>

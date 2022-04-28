@@ -67,6 +67,20 @@ class Course(models.Model):
         return 1, {}
 
 
+class Order(models.Model):
+    user = models.ForeignKey("authapp.UserProfile", verbose_name='Пользователь', on_delete=models.CASCADE, related_name="user_order")
+    course = models.ForeignKey(Course, verbose_name='Курс', on_delete=models.CASCADE, related_name="course_order")
+    created_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.user.username
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = 'Заказ'
+        verbose_name_plural = 'Заказы'
+
+
 class Task(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="task")
     name = models.CharField(max_length=128)
@@ -88,3 +102,5 @@ class Task(models.Model):
     def delete(self, using=None, keep_parents=False):
         self.is_active = False
         self.save()
+
+

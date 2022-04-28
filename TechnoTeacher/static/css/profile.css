@@ -76,8 +76,6 @@ input {
     padding: 20px 0;
     margin: 20px 0;
 }
-
-
 .login_form{
     display: grid;
     grid-template-columns: 30% 40% 30%;
@@ -121,3 +119,56 @@ select {
     margin:10px 0;
     padding:10px;
   }
+
+.user_order{
+    display: grid;
+    background-color: rgb(241, 241, 241);
+    border-radius: 50px;
+    grid-template-columns: 40% 60%;
+    padding: 40px 20px 40px 0;
+    margin: 20px 0;
+
+}
+.user_order_image{
+    height: 100%;
+    width: 100%;
+}
+.user_order_div{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 20px;
+}
+
+.order_card{
+    display: grid;
+    padding: 30px;
+    border-radius: 15px;
+    transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg);
+    transform-style: preserve-3d;
+    box-shadow: 6px 6px 20px 4px rgba(55, 84, 170, 0.12);
+    transition: box-shadow 200ms ease;
+}
+.order_card:hover{
+    box-shadow: 8px 8px 20px 8px rgba(55, 84, 170, 0.15);
+}
+.order_card_top{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+.order_card_top_div{
+    display: grid;
+}
+
+.order_card_top_image{
+    height: 30px;
+    width: auto;
+    justify-self: right;
+    align-self: baseline;
+}
+.order_card_h{
+    font-size: 20px;
+}
+.order_card_p{
+    padding-top: 10px;
+    font-size: 15px;
+}

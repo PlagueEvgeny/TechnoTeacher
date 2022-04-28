@@ -22,3 +22,15 @@
     height: 100%;
     width: 100%;
 }
+.add_order{
+    padding: 10px;
+    border-radius: 50px;
+    border: 1px solid;
+    align-self: flex-end;
+    justify-self: baseline;
+}
+.add_order:hover{
+    background-color: #387948;
+    border: 1px solid #387948;
+    color: #fff;
+}
