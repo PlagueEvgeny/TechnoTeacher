@@ -21,7 +21,11 @@ def index(request):
 def all_category(request, category, pk):
     category = Category.objects.filter(slug=category)
     categories = Category.objects.all()[0:10]
-    order = Order.objects.filter(user=request.user)
+    
+    if request.user.is_anonymous == True:
+    	order = None
+    else:
+    	order = Order.objects.filter(user=request.user)
 
 
     if 'search' in request.GET:
@@ -36,7 +40,7 @@ def all_category(request, category, pk):
         'categories': categories,
         'course': course,
         'order': order,
-        'title': f"Онлайн курсы '{Category.objects.get(id=pk)}'"
+        'title': f"Онлайн курсы {Category.objects.get(id=pk)}"
     }
 
     return render(request, "mainapp/category.html", context)
