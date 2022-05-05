@@ -1,3 +1,7 @@
-document.getElementById('id_avatar').addEventListener('change', function() {
-    alert(this.files[0].name);
+$(document).ready(function(){
+  $("ul").hide();
+  $("ul li:odd").css("background-color", "#efefef");
+  $("h3 span").click(function(){
+  $(this).parent().next().slideToggle();
+  });
   });
