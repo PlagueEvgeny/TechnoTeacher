@@ -1,13 +1,22 @@
 {% extends 'mainapp/base.html' %}
 {% block content %}
 {% load static %}
+<script type="text/javascript">
+$(document).ready(function(){
+    $("ul").hide();
+    $("ul li:odd").css("background-color", "#efefef");
+    $("h1 span").click(function(){
+    $(this).parent().next().slideToggle();
+    });
+});
+</script>
 <div class="course">
     <div style="display: grid;">
         <h1 class="about_course_h1">
             {{course.name}}
         </h1>
         <p class="about_course_p">{{course.desc}}</p>
-        <a href="{% url 'main:add_order' course.id %}" class="add_order">Записаться</a>
+        <a href="{% url 'main:add_order' course.id %}" class="add_order"></a>
     </div>
     <div class="course_cover">
         <img src="{{course.cover.url}}" class="about_course_cover" alt="">

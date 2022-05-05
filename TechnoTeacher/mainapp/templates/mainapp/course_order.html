@@ -1,0 +1,49 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block header %}
+<header class="header">
+    <div>
+        <a href="{% url 'main:index' %}">TechnoTeacher</a>
+    </div>
+    <div>
+    </div>
+    <div class="nav">
+        <div class="media">
+            <div></div>
+            <div>
+            </div>
+            <div>
+            </div>
+            <div></div>
+        </div>
+        <div class="login">
+            {% if user.is_authenticated %}
+            <div></div>
+            <div>
+                <a href="{% url 'chat:index' %}" class="nav_link">Сообщения</a>
+            </div>
+            <div>
+                <a href="{% url 'auth:profile' %}" class="nav_link">Профиль</a>
+            </div>
+            {% else %}
+            <div></div>
+            <div></div>
+            <div>
+                <a href="{% url 'auth:login' %}" class="nav_link">Войти</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</header>
+{% endblock %}
+{% block content %}
+<div class="course_order">
+    <div class="course_order_content">
+        {% for item in content %}
+            <h1>{{item.name}}</h1>
+            {% for task in item.content_task.all %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -33,12 +33,12 @@ class Category(models.Model):
 class Course(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='course')
     name = models.CharField(max_length=128)
-    slug = models.SlugField(max_length=250) 
+    slug = models.SlugField(max_length=250, default=name) 
     cover = models.ImageField(verbose_name='Обложка', upload_to='images/course/')
     desc = models.TextField()
     price = models.DecimalField(verbose_name='Стоимость', max_digits=6, decimal_places=2, default=0)
     teachers = models.ManyToManyField("authapp.UserProfile", related_name='course_teachers')
-    students = models.ManyToManyField('authapp.UserProfile', related_name='course_students')
+    students = models.ManyToManyField('authapp.UserProfile', blank=True, related_name='course_students')
     create = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
     status = models.BooleanField(default=True)
@@ -55,13 +55,14 @@ class Course(models.Model):
     def restore(self):
         self.is_active = True
         self.name = self.name[1:]
-        self.task_set.all().update(is_active=True)
+        self.course_task.all().update(is_active=True)
         self.save()
 
     def delete(self, using=None, keep_parents=False):
         self.is_active = False
         with transaction.atomic() as _:
-            self.task_set.all().update(is_active=False)
+            self.course_order.all().delete()
+            self.course_task.all().update(is_active=False)
             self.name = f'_{self.name}'
             self.save()
         return 1, {}
@@ -81,11 +82,26 @@ class Order(models.Model):
         verbose_name_plural = 'Заказы'
 
 
+class Content(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="content_task")
+    name = models.CharField(max_length=128)
+
+    class Meta:
+        ordering = ["course"]
+        verbose_name = "Содержание"
+        verbose_name_plural = "Содержание"
+
+    def __str__(self):
+        return f'{self.course.name} - {self.name}'
+
+
 class Task(models.Model):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="task")
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="course_task")
+    content = models.ForeignKey(Content, on_delete=models.CASCADE, related_name="content_task", blank=True)
     name = models.CharField(max_length=128)
     desc = models.TextField()
-    solution = models.FileField(upload_to='solution/', null=True)
+    status = models.BooleanField(default=False)
+    solution = models.FileField(upload_to='solution/', blank=True, null=True)
     test = models.FileField(upload_to='test/',
                             null=True)  # Как реализовать проверку с помощью тестов не знаю надо подумать над этим
     is_active = models.BooleanField(default=True, db_index=True)
@@ -94,6 +110,9 @@ class Task(models.Model):
         ordering = ["name"]
         verbose_name = "Задача"
         verbose_name_plural = "Задачи"
+
+    def __str__(self):
+        return f'{self.course.name} - {self.name}'
 
     def restore(self):
         self.is_active = True

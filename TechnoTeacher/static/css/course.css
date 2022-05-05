@@ -34,3 +34,101 @@
     border: 1px solid #387948;
     color: #fff;
 }
+.content_course{
+    display: grid;
+    background-color: rgb(241, 241, 241);
+    border-radius: 50px;
+    margin: 20px 0;
+    padding: 50px 50px;
+}
+.content_course_title{
+    font-size: 32px;
+    text-align: center;
+}
+.course_list_content {
+    margin: 10px auto;
+    border: 1px solid #d1d1d1;
+    padding: 4px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-box-shadow: 0px 0px 10px #ddd;
+    -webkit-box-shadow: 0px 0px 10px #ddd;
+}
+.course_list_content_title {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    padding: 5px;
+    background: -moz-linear-gradient(center top, #efefef 0%,#e0e0e0 100%);
+    border: 1px solid #d1d1d1;
+    font-size: 22px;
+    font-weight: normal;
+    text-shadow: 1px 1px 0px #fff;
+}
+.course_list_content_title span.expand {
+    float: right;
+    cursor: pointer;
+    font-size: 22px;
+}
+.course_list_content_title span.expand:hover{
+    text-shadow: 0px 0px 3px #a1eeff;
+}
+.course_list_content_ul {
+    padding: 5px; overflow: hidden;
+}
+.course_list_content_ul .course_list_content_li{
+    font-size: 16px;
+    list-style-type: square;
+    list-style-position: inside;
+    padding: 5px 10px;
+}
+
+
+.create_course_from{
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+.example-1 .form-group{
+    margin:1em 0 2em 0
+}
+.example-1 input[type=file]{
+    outline:0;
+    opacity:0;
+    pointer-events:none;
+    user-select:none
+}
+.example-1 .label{
+    width:120px;
+    border:2px dashed grey;border-radius:5px;
+    display:block;
+    padding:1.2em;
+    transition:border 300ms ease;
+    cursor:pointer;
+    text-align:center
+}
+.example-1 .label{
+    display:block;
+    font-size:30px;
+    padding-bottom:16px
+}
+.example-1 .label,.example-1 .label .title{
+    color:grey;
+    transition:200ms color
+}
+.example-1 .label:hover{
+    border:2px solid #000
+}
+.example-1 .label:hover,.example-1 .label:hover .title{
+    color:#000
+}
+
+.course_form{
+    border-radius:10px;
+    border: 1px solid #eee;
+    transition: .3s border-color;
+    width: 60%;
+    padding: 15px;
+}
+.course_order{
+    display: grid;
+    grid-template-columns: 30% 70%;
+}

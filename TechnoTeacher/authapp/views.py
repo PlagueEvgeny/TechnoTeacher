@@ -1,7 +1,7 @@
 import django.contrib.auth as auth
 from django.contrib import messages
 from authapp.models import UserProfile
-from mainapp.models import Order
+from mainapp.models import Order, Course
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -48,6 +48,7 @@ def register(request):
 @login_required
 def profile(request):
     order = Order.objects.filter(user=request.user)
+    course = Course.objects.filter(teachers=request.user, is_active=True)[0:4]
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=request.user)
         messages.success(request, 'Your profile is updated successfully')
@@ -60,6 +61,7 @@ def profile(request):
     context = {
         'title': 'Профиль',
         'form': form,
-        'order': order
+        'order': order,
+        'course': course,
     }
     return render(request, 'authapp/profile.html', context)

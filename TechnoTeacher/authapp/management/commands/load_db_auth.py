@@ -8,7 +8,7 @@ class Command(BaseCommand):
     help = 'Makes reserve copy'
 
     def handle(self, *args, **options):
-        with open('dump/profile.json', 'r', encoding='utf-8') as f:
+        with open('dump/authapp/profile.json', 'r', encoding='utf-8') as f:
             data_for_resore = json.load(f)
 
         for item in data_for_resore:

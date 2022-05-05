@@ -8,7 +8,7 @@
             <div class="about_image">
                 <label style="cursor:pointer;">
                     <img src="{{user.avatar.url}}" alt="avatar" class="profile_image">
-                    <input type="file"alt="avatar" id="id_avatar" name="avatar" accept="image/*">
+                    <input type="file" alt="avatar" id="id_avatar" name="avatar" accept="image/*">
                 </label>
             </div>
             <div>
@@ -26,6 +26,8 @@
         <div>
             <ui-sb-input class="ui_input">
                 {% csrf_token %}
+                <label for="id_id">Ваш id
+                <input type="text" class="form-profile" id="id_id" name="id" value="{{ user.id }}" placeholder="id" disabled></label>
                 <label for="id_first_name"></label>
                 <input type="text" class="form-profile" id="id_first_name" name="first_name" value="{{ user.first_name }}" placeholder="Имя">
                 <label for="id_last_name"></label>
@@ -75,8 +77,31 @@
         </a>
         {% endfor %}
     {% else %}
-        <h3>Заказов нету</h3>
+        <h3>Вы еще не приобрели не один курс</h3>
     {% endif %}
     </div>
 </div>
+{% if user.role == 't' %}
+<div class="user_order">
+    <div class="about_form">Преподавание</div>
+    <div class="about_form_all_course">
+        <a href="{%url 'main:course_teacher'%}">Все курсы</a>
+    </div>
+    <div></div>
+    <div class="user_order_div">
+        {% for item in course %}
+            <a href="{% url 'main:course_teacher_detail' item.slug%}" class="order_card">
+                <div class="order_card_top">
+                    <h1 class="order_card_h">{{item.name}}
+                    </h1>
+                    <div class="order_card_top_div">
+                        <img src="{% static 'img/icon/paz.svg' %}" alt="" class="order_card_top_image">
+                    </div>
+                </div>
+                <p class="order_card_p"></p>
+            </a>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
 {% endblock %}

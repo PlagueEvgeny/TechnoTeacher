@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{% static 'css/course.css' %}">
     <link rel="stylesheet" href="{% static 'css/profile.css' %}">
     <link rel="stylesheet" href="{% static 'css/chat.css' %}">
+    <link rel="stylesheet" href="{% static 'css/teacher.css' %}">
     {% endblock %}
     {% block js %}
     <script src="{% static 'js/dialog.js' %}"></script>
@@ -19,6 +20,7 @@
 
 </head>
 <body>
+{% block header %}
 <header class="header">
     <div>
         <a href="{% url 'main:index' %}">TechnoTeacher</a>
@@ -58,6 +60,7 @@
         </div>
     </div>
 </header>
+{% endblock %}
 <div class="content">
 {% block content %}
 {% endblock %}

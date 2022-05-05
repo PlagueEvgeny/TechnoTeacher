@@ -1,0 +1,46 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+{% load static %}
+<div class="create_course_from">
+    <div></div>
+    <div>
+        <form action="" id="course_form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="example-1">
+                <div class="form-group">
+                    <label class="label">
+                        <img src="{{create_course.cover.url}}" alt="Обложка">
+                        <span class="title">Добавить файл</span>
+                        <input type="file" alt="cover" id="id_cover" name="cover" accept="image/*">
+                    </label>
+                </div>
+            </div>
+            <select name="category" required="" id="id_category" name='category' class="course_form">
+                <option value="">Категории</option>
+              
+                <option value="1">Linux</option>
+              
+                <option value="2">Архитектура</option>
+              
+                <option value="3">Базы данных</option>
+              
+                <option value="4">Дизайн</option>
+              
+                <option value="5">Игры</option>
+              
+                <option value="6">Инженерия</option>
+              
+                <option value="7">Программирование</option>
+              
+            </select>
+            <input type="text" id="id_name" name='name' placeholder="Название" class="course_form">
+            <input type="text" id="id_slug" name='slug' placeholder="Название ссылки на английском" class="course_form">
+            <textarea type="text" id="id_desc" name='desc' placeholder="Краткое описание" rows="10" class="course_form"></textarea>
+            <input type="number" id="id_price" step=".01" name='price' placeholder="Стоимость" class="course_form">
+            {{form.teachers}}
+            
+            <button class="button-profile form-profile">Сохранить</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

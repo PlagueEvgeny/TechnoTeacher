@@ -21,5 +21,5 @@ class Command(BaseCommand):
                 'is_staff': item.is_staff,
                 'password': item.password,
             })
-        with open('dump/profile.json', 'w', encoding='utf-8') as f:
+        with open('dump/authapp/profile.json', 'w', encoding='utf-8') as f:
             json.dump(data_for_dump, f)

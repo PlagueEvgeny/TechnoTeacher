@@ -1,0 +1,49 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+{% load static %}
+<div class="course_teacher">
+    <div></div>
+    <div>
+        <div class="course_teacher_title">
+            <div>
+                <h1 class="course_teacher_h1">Курсы</h1>
+            </div>
+            <div>
+                <a href="{% url 'main:course_create' %}" class="course_teacher_create">
+                    Создать
+                </a>
+            </div>
+            <div class="course_teacher_form_search">
+                <form action="" method="get">
+                    <input type="search" placeholder="Поиск" name="search" id="search">
+                </form>
+            </div>
+        </div>
+        <div class="course_teacher_list">
+            {% for item in course %}
+            <div class="course_teacher_item">
+                <div class="course_teacher_div_cover">
+                    <img src="{{item.cover.url}}" alt="{{item.name}}" class="course_teacher_cover">
+                </div>
+                <div class="course_teacher_div_content">
+                    <div class="course_teacher_div_title">
+                        <h1>{{item.name}}</h1>
+                    </div>
+                    <div class="course_teacher_div_link">
+                        <div class="course_teacher_div_item_link">
+                            <div><a href="{% url 'main:course_teacher_detail' item.slug %}">Просмотр</a></div>
+                            <div><a href="{% url 'main:course_edit' item.slug %}">Изменить</a></div>
+                            <div><a href="{% url 'main:course_remove' item.slug %}">Удалить</a></div>
+                            <div></div>
+                        </div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div></div>
+</div>
+{% endblock %}
