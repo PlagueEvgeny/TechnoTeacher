@@ -8,6 +8,7 @@ from django.urls import reverse
 from authapp.forms import LoginForm, RegisterForm, ProfileForm
 from django.contrib.auth.decorators import login_required
 
+
 def login(request):
     if request.method == 'POST':
         form = LoginForm(data=request.POST)

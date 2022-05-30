@@ -1,0 +1,44 @@
+.task{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+.task-info{
+    display: grid;
+    gap: 15px;
+
+}
+.task-div{
+    border-radius: 10px;
+    background-color: rgb(241, 241, 241);
+}
+.div-cod{
+    display:grid;
+    grid-template-columns: 1fr;
+}
+.text-cod{
+    border-radius: 50px;
+    border: none;
+    padding: 10px;
+}
+.button-task{
+    border-radius: 10px;
+    padding: 10px;
+    float: left;
+    margin: 20px 25px;
+    background-color: #44883c;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+}
+.task-finish{
+    float: right;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20px 0px;
+    background-color: #467165;
+    color: #fff;
+}
+.CodeMirror{
+    height: 500px !important;
+}

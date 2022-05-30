@@ -28,5 +28,13 @@
         {% endfor %}
     </div>
 </div>
-
+<script type="text/javascript">
+$(document).ready(function(){
+    $("ul").hide();
+    $("ul li:odd").css("background-color", "#efefef");
+    $("h1 span").click(function(){
+    $(this).parent().next().slideToggle();
+    });
+});
+</script>
 {% endblock %}

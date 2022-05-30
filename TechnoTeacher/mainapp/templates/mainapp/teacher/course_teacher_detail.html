@@ -10,13 +10,15 @@ $(document).ready(function(){
     });
 });
 </script>
+<form action="" id="course_form" method="post" enctype="multipart/form-data">
+{% csrf_token %}
 <div class="course">
     <div style="display: grid;">
         <h1 class="about_course_h1">
-            {{course.name}}
+    <input type="text" id="id_name" name='name' placeholder="Название" class="course_form" value="{{form.name}}">
         </h1>
-        <p class="about_course_p">{{course.desc}}</p>
-        <a href="{% url 'main:add_order' course.id %}" class="add_order"></a>
+        <p class="about_course_p">{{form.desc}}</p>
+        <button class="button-profile" type="submit"> Изменить </button>
     </div>
     <div class="course_cover">
         <img src="{{course.cover.url}}" class="about_course_cover" alt="">
@@ -25,17 +27,19 @@ $(document).ready(function(){
 <div class="content_course">
     <div>
         <h1 class="content_course_title">Содержание курса</h1>
-        {% for item in content %}
+
+        {% for item in form.course_task.all %}
         <div class="course_list_content">
-            <h1 class="course_list_content_title">{{item.name}}<span class="expand">+</span></h1>
+            <h1 class="course_list_content_title"><input id="id_name" type='text' name="name" value="{{item.name}}"><span class="expand">+</span></h1>
             <ul class="course_list_content_ul">
                 {% for task in item.content_task.all %}
                 <li class="course_list_content_li">{{task.name}}</li>
                 {% endfor %}
             </ul>
         </div>
-        {% endfor %}
+        {% endfor %} 
+        <button class="button-profile" type="submit"> Изменить </button>
     </div>
 </div>
-
+</form>
 {% endblock %}

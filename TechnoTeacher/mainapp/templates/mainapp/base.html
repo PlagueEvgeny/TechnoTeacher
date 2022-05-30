@@ -10,11 +10,16 @@
     <link rel="stylesheet" href="{% static 'css/course.css' %}">
     <link rel="stylesheet" href="{% static 'css/profile.css' %}">
     <link rel="stylesheet" href="{% static 'css/chat.css' %}">
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
     <link rel="stylesheet" href="{% static 'css/teacher.css' %}">
+    <link rel="stylesheet" href="{% static 'css/events.css' %}">
+    <link rel="stylesheet" href="{% static 'css/task.css' %}">
+    <link rel="stylesheet" href="{% static 'css/room.css' %}">
+    <link rel="stylesheet" href="http://codemirror.net/lib/codemirror.css">
     {% endblock %}
     {% block js %}
-    <script src="{% static 'js/dialog.js' %}"></script>
-    <script src="{% static 'js/active.js' %}"></script>
+    <script src="http://codemirror.net/lib/codemirror.js"></script>
+    <script src="http://codemirror.net/mode/javascript/javascript.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     {% endblock %}
 
@@ -32,17 +37,17 @@
         <div class="media">
             <div></div>
             <div>
-                <a href="" class="nav_link">О TechnoTeacher</a>
+                <a href="{% url 'main:about' %}" class="nav_link">О TechnoTeacher</a>
             </div>
             <div>
-                <a href="" class="nav_link">Вебинары</a>
+                <a href="{% url 'main:events' %}" class="nav_link">Мероприятия</a>
             </div>
             <div></div>
         </div>
         <div class="login">
             {% if user.is_authenticated %}
             <div>
-                <a href="{% url 'chat:index' %}" class="nav_link">Сообщения</a>
+                <a href="{% url 'chat:rooms' %}" class="nav_link">Сообщения</a>
             </div>
             <div>
                 <a href="{% url 'auth:profile' %}" class="nav_link">Личный кабинет</a>
@@ -86,5 +91,7 @@
         </div>
     </div>
 </footer>
+{% block scripts %}
+{% endblock %}
 </body>
 </html>

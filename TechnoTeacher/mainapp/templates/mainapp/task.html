@@ -1,0 +1,43 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class='task'>
+    <div class='task-info task-div'>
+        <div>
+            <h3> {{ task.name }} </h3>
+        </div>
+        <div>
+            <p> {{ task.desc|linebreaksbr|safe }} </p>
+        </div>
+    </div>
+    <div class='task-div div-cod'>
+        <form method='post'>
+            {% csrf_token %}
+            <input type="hidden" name="task" value="{{ task.id }}" id="id_task">
+            <textarea id="code" name="code" rows="150">Lorem ipsum dolor sit amet.</textarea>
+            <a class='task-finish' href="{% url 'main:task_finish' task.id %}">
+                Далее
+            </a>
+            <button class='button-task'>
+                Запустить
+            </button>
+            
+        </form>
+    </div>
+</div>
+<script>
+var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        lineWrapping: true,
+        autofocus:true
+      });
+
+editor.setCursor(2,2);     // это значит поместить курсор на 3 строку (отсчёт от 0), символ 3
+
+var pos=editor.posFromIndex(3);  //получить координаты 3-ей позиции (строку и символ)
+editor.setCursor(pos.line,pos.ch);       
+
+</script>
+{% endblock %}
+

@@ -1,0 +1,20 @@
+{% extends 'mainapp/base.html' %}
+
+
+{% block content %}
+<div class="room">
+        <div class="rooms">
+            {% for room in rooms %}
+            <a href="{% url 'chat:room' room.slug %}" class="rooms_link">
+                <div class="rooms_link_div">
+                    {{ room.name }}
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        <div class="chat">
+            {% block chat %}
+            {% endblock %}
+        </div>
+</div>
+{% endblock %}

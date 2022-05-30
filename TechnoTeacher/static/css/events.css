@@ -1,0 +1,18 @@
+.event {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    padding: 30px;
+}
+.event-title {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 10px;
+}
+.event-images{
+    max-width: 250px;
+}
+.event-h1{
+    font-size: 20px;
+    padding: 5px 0;
+}

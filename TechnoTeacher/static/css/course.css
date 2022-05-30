@@ -130,5 +130,19 @@
 }
 .course_order{
     display: grid;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: 80% 20%;
+}
+.course_task{
+    display: grid;
+}
+.course_problems, .course_problems_task{
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-column-gap: 10px;
+    border-bottom: 1px black solid;
+    margin-bottom: 5px;
+}
+.course_problems_task{
+    border: none;
+    margin-top: 10px;
 }

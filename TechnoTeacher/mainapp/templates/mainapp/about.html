@@ -1,0 +1,121 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+{% load static %}
+<div class="about_top">
+    <div>
+        <h1 class="about_top_title">TechnoTeacher - образовательный портал</h1>
+        <p class="about_top_text">
+            Мы учим людей с нуля осваивать программирование, веб-дизайн и маркетинг. 
+            Проводим онлайн-курсы со стажировкой и бесплатные мастер-классы, развиваем сообщество, 
+            сотрудничаем с компаниями по трудоустройству и непрерывно тестируем новые методики 
+            для поднятия эффективности обучения.
+        </p>
+    </div>
+    <div></div>
+    <div></div>
+    <div>
+        <h1 class="about_top_title">Наша цель - Ваше трудоустройство</h1>
+        <p class="about_top_text"> 
+            Мы привязали систему мотивации сотрудников и преподавателей к результатам студентов.
+            Поэтому мы совершенствуем наше обучение каждый день и сами с удовольствием
+            приглашаем выпускников на работу.
+        </p>
+    </div>
+</div>
+<div class="about_free">
+    <h1 class="about_free_title">
+        Учитесь бесплатно
+    </h1>
+    <p style="text-align: center; padding: 20px 100px;">Мы стремимся сделать знания доступными каждому, поэтому каждый день
+        на портале появляются новые бесплатные обучающие материалы 
+        в виде статей, вебинаров или видеокурсов </p>
+    <div class="about_free_div">
+        <div class="about_free_div_img">
+            <img src="{% static 'img/icon/light.png' %}" alt="" class="free_img">
+            <p class="free_p">Интенсивы</p>
+        </div>
+        <div class="about_free_div_img">
+            <img src="{% static 'img/icon/proff.png' %}" alt="" class="free_img">
+            <p class="free_p">Профессии</p>
+        </div>
+        <div class="about_free_div_img">
+            <img src="{% static 'img/icon/video.png' %}" alt="" class="free_img">
+            <p class="free_p">Вебинары</p>
+        </div>
+        <div class="about_free_div_img">
+            <img src="{% static 'img/icon/post.png' %}" alt="" class="free_img">
+            <p class="free_p">Статьи</p>
+        </div>
+    </div>
+</div>
+<div class="about_course">
+    <div>
+        <h1 class="about_course_title">
+            Как устроена платформа TechnoTeacher
+        </h1>
+    </div>
+    <div class="about_course_div">
+        <div class="about_course_number">
+            01
+        </div>
+        <div class="about_course_div_text">
+            <div>
+                <h1 class="about_course_div_text_h1">
+                    Круглосуточный доступ к личному кабинету
+                </h1>                
+            </div>
+            <div>
+                <h3 class="about_course_div_text_h3">Смотрите видео онлайн в удобное время</h3>
+            </div>
+        </div>
+    </div>
+    <div class="about_course_div">
+        <div class="about_course_number">
+            02
+        </div>
+        <div class="about_course_div_text">
+            <div>
+                <h1 class="about_course_div_text_h1">
+                    Курсы обновляются регулярно
+                </h1>                
+            </div>
+            <div>
+                <h3 class="about_course_div_text_h3">Получаете знания, которые отвечают требованиям рынка труда</h3>
+            </div>
+        </div>
+    </div>
+    <div class="about_course_div">
+        <div class="about_course_number">
+            03
+        </div>
+        <div class="about_course_div_text">
+            <div>
+                <h1 class="about_course_div_text_h1">
+                    Проверочные тесты и практические задания
+                </h1>                
+            </div>
+            <div>
+                <h3 class="about_course_div_text_h3">Закрепляете теорию на практике и получаете обратную связь</h3>
+            </div>
+        </div>
+    </div>
+    <div class="about_course_div">
+        <div class="about_course_number">
+            04
+        </div>
+        <div class="about_course_div_text">
+            <div>
+                <h1 class="about_course_div_text_h1">
+                    Кураторы — признанные профессионалы
+                </h1>                
+            </div>
+            <div>
+                <h3 class="about_course_div_text_h3">Делятся опытом в решении бизнес‑задач и необходимыми инструментами</h3>
+            </div>
+        </div>
+    </div>
+    <div></div>
+</div>
+
+
+{% endblock %}

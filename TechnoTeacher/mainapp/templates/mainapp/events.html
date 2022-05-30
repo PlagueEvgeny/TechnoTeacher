@@ -1,0 +1,19 @@
+{% extends "mainapp/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="event">
+    {% for item in events %}
+    <div class="event-title">
+        <div>
+            <img src="{{ item.images.url }}" alt="" class="event-images">
+        </div>
+        <div>
+            <h1 class="event-h1"> {{ item.name }} </h1>
+            <p> {{ item.desc }} </p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

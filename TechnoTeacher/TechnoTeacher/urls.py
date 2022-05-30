@@ -7,6 +7,7 @@ urlpatterns = [
     path('', include('mainapp.urls', namespace='main')),
     path('auth/', include('authapp.urls', namespace='auth')),
     path('chat/', include('chatapp.urls', namespace='chat')),
+    path('__debug__/', include('debug_toolbar.urls')),
     path('admin/', admin.site.urls),
 ]
 

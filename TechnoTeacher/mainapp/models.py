@@ -1,4 +1,5 @@
 from django.db import models, transaction, DatabaseError
+from django.utils.translation import gettext_lazy as _
 
 
 class Category(models.Model):
@@ -96,12 +97,21 @@ class Content(models.Model):
 
 
 class Task(models.Model):
+    DIFFICULTY_HARD = 'h'
+    DIFFICULTY_EASY = 'e'
+    DIFFICULTY_MEDIUM = "m"
+    DIFFICULTY = (
+        (DIFFICULTY_HARD, _('Hard')),
+        (DIFFICULTY_EASY, _('Easy')),
+        (DIFFICULTY_MEDIUM, _('Medium')),
+    )
+
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="course_task")
     content = models.ForeignKey(Content, on_delete=models.CASCADE, related_name="content_task", blank=True)
     name = models.CharField(max_length=128)
     desc = models.TextField()
     status = models.BooleanField(default=False)
-    solution = models.FileField(upload_to='solution/', blank=True, null=True)
+    difficulty = models.CharField(_('difficulty'), max_length=1, choices=DIFFICULTY, blank=True)
     test = models.FileField(upload_to='test/',
                             null=True)  # Как реализовать проверку с помощью тестов не знаю надо подумать над этим
     is_active = models.BooleanField(default=True, db_index=True)
@@ -114,6 +124,10 @@ class Task(models.Model):
     def __str__(self):
         return f'{self.course.name} - {self.name}'
 
+    def finish(self):
+        self.status = True
+        self.save()
+
     def restore(self):
         self.is_active = True
         self.save()
@@ -122,4 +136,14 @@ class Task(models.Model):
         self.is_active = False
         self.save()
 
+class Sollution(models.Model):
+    task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='sollution')
+    code = models.TextField()
+
+
+class Event(models.Model):
+    name = models.CharField(max_length=128)
+    desc = models.TextField()
+    images = models.ImageField(upload_to='images/events')
+    date = models.DateTimeField()
 
