@@ -6,6 +6,7 @@
 .task-info{
     display: grid;
     gap: 15px;
+    grid-template-rows: 40px 1fr;
 
 }
 .task-div{

@@ -19,6 +19,7 @@ def index(request):
 
     return render(request, "mainapp/index.html", context)
 
+
 def events(request):
     events = get_list_or_404(Event)
 
@@ -113,7 +114,6 @@ def course_teacher_detail(request, course):
     else:
         form = CourseForm(instance=course)
 
-
     context = {
         'course': course,
         'content': content,
@@ -176,13 +176,12 @@ def task_detail(request, pk):
 
             return HttpResponseRedirect(reverse('main:task_detail', kwargs={'pk': task.id}))
 
-    
     context = {
         'title': f'{task.name}',
         'task': task,
         'form': form,
     }
-    
+
     return render(request, 'mainapp/task.html', context)
 
 
@@ -245,7 +244,7 @@ def course_order(request, course):
     content = Content.objects.filter(course=course)
     task = Task.objects.filter(course=course)
 
-    if request.user.is_anonymous == True:
+    if request.user.is_anonymous:
         order = None
     else:
         try:

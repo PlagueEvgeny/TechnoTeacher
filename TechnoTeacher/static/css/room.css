@@ -1,55 +1,64 @@
-.room_title_div{
-	display: grid;
-	grid-template-columns: 1fr;
-	margin: 10px 0 100px 0;
+.room_title_div {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 10px 0 100px 0;
 }
-.room_title{
-	font-size: 50px;
-	text-align: center;
+
+.room_title {
+    font-size: 50px;
+    text-align: center;
 }
-.room{
-	display: grid;
-	grid-template-columns: 1fr 3fr;
-	grid-gap: 20px;
+
+.room {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-gap: 20px;
 }
-.rooms{
-	background-color: rgb(210, 210, 210);
-	border-radius: 10px;
-	padding: 20px;
-	height: 500px; /* высота нашего блока */
-	overflow-y: scroll; /* прокрутка по вертикали */
+
+.rooms {
+    background-color: rgb(210, 210, 210);
+    border-radius: 10px;
+    padding: 20px;
+    height: 500px; /* высота нашего блока */
+    overflow-y: scroll; /* прокрутка по вертикали */
 }
-.title_rooms{
-	font-size: 20px;
-	text-align: center;
-	padding: 20px;
+
+.title_rooms {
+    font-size: 20px;
+    text-align: center;
+    padding: 20px;
 }
-.rooms_link{
-	text-align: center;
-	color: #fff;
+
+.rooms_link {
+    text-align: center;
+    color: #fff;
 }
-.rooms_link_div{
-	background: #44883c;
-	padding: 10px;
-	border-radius: 10px;
-	margin: 10px;
+
+.rooms_link_div {
+    background: #44883c;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
 
 }
-.room_message{
-	display: grid;
-	grid-template-columns: 1fr;
-	background-color: rgb(210, 210, 210);
-	border-radius: 10px 10px 0 0;
-	padding: 20px;
-	height: 500px; /* высота нашего блока */
-	overflow-y: scroll; /* прокрутка по вертикали */
+
+.room_message {
+    display: grid;
+    grid-template-columns: 1fr;
+    background-color: rgb(210, 210, 210);
+    border-radius: 10px 10px 0 0;
+    padding: 20px;
+    height: 500px; /* высота нашего блока */
+    overflow-y: scroll; /* прокрутка по вертикали */
 }
-.chat-messages{
-	display: grid;
-	grid-template-columns: 1fr;
-	
+
+.chat-messages {
+    display: grid;
+    grid-template-columns: 1fr;
+
 }
-.message{
+
+.message {
     border: 2px solid #dedede;
     background-color: #f1f1f1;
     border-radius: 5px;
@@ -67,6 +76,7 @@
     clear: both;
     display: table;
 }
+
 .message img {
     float: left;
     max-width: 60px;
@@ -79,12 +89,13 @@
 .message img.right {
     float: right;
     margin-left: 20px;
-    margin-right:0;
+    margin-right: 0;
 }
 
-.room_username{
-	font-weight: bold;
+.room_username {
+    font-weight: bold;
 }
+
 .time-right {
     float: right;
     color: #aaa;
@@ -96,46 +107,163 @@
     color: #999;
 }
 
-.room_text{
-	word-break: break-all;
+.room_text {
+    word-break: break-all;
 }
 
-.room_input_div{
-	display: grid;
-	grid-template-columns: 8fr 1fr;
-	border-radius: 0 0 10px 10px;
-	padding: 10px 15px;
-	background-color: rgb(189, 189, 189);
-	grid-gap: 10px;
-
-}
-.room_input{
-	border-radius: 10px;
-	border: #8e8e8e 1px solid;
-  	background-color: rgb(189, 189, 189);
-}
-
-}
-.room_button{
-	margin: 10px 0;
-	background-color: rgb(189, 189, 189);
-	border: none;
+.room_input_div {
+    display: grid;
+    grid-template-columns: 8fr 1fr;
+    border-radius: 0 0 10px 10px;
+    padding: 10px 15px;
+    background-color: rgb(189, 189, 189);
+    grid-gap: 10px;
 
 }
 
-.room_button:hover{
-	margin: 10px 0;
-	background-color: rgb(189, 189, 189);
-	border: none;
-	cursor: pointer;
+.room_input {
+    border-radius: 10px;
+    border: #8e8e8e 1px solid;
+    background-color: rgb(189, 189, 189);
 }
 
-/* Darker chat container */
+.room_button {
+    margin: 10px 0;
+    background-color: rgb(189, 189, 189);
+    border: none;
 
-/* Clear floats */
+}
 
+.room_button:hover {
+    margin: 10px 0;
+    background-color: rgb(189, 189, 189);
+    border: none;
+    cursor: pointer;
+}
 
-/* Style images */
+.modal {
+    position: fixed;
+    /* фиксированное положение */
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    /* цвет фона */
+    z-index: 1050;
+    opacity: 0;
+    /* по умолчанию модальное окно прозрачно */
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    /* анимация перехода */
+    pointer-events: none;
+    /* элемент невидим для событий мыши */
+}
 
+/* при отображении модального окно */
+.modal:target {
+    opacity: 1;
+    pointer-events: auto;
+    overflow-y: auto;
+}
 
-/* Style time text */
+/* ширина модального окна и его отступы от экрана */
+.modal-dialog {
+    position: relative;
+    width: auto;
+    margin: 10px;
+}
+
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 500px;
+        margin: 30px auto;
+    }
+}
+
+/* свойства для блока, содержащего контент модального окна */
+.modal-content {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: .3rem;
+    outline: 0;
+}
+
+@media (min-width: 768px) {
+    .modal-content {
+        -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+    }
+}
+
+/* свойства для заголовка модального окна */
+.modal-header {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #eceeef;
+}
+
+.modal-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 1.5;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+/* свойства для кнопки "Закрыть" */
+.close {
+    float: right;
+    font-family: sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+    text-decoration: none;
+}
+
+/* свойства для кнопки "Закрыть" при нахождении её в фокусе или наведении */
+.close:focus,
+.close:hover {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: .75;
+}
+
+/* свойства для блока, содержащего основное содержимое окна */
+.modal-body {
+    position: relative;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 15px;
+    overflow: auto;
+}

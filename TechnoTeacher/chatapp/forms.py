@@ -1,14 +1,15 @@
-from django.forms import ModelForm
+from django import forms
 
 from chatapp.models import Room
 
 
-class RoomForm(ModelForm):
-    model = Room
-    fields = [
-        'name',
-        'slug',
-    ]
+class RoomForm(forms.ModelForm):
+    class Meta:
+        model = Room
+        fields = (
+            'name',
+            'slug',
+        )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

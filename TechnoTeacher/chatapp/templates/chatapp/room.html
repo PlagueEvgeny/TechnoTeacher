@@ -3,116 +3,117 @@
 {% block title %}{{ room.name }} | {% endblock %}
 
 {% block chat %}
-<div class="room_message">
-    <div class="chat-messages" id="chat-messages">
-        {% for message in messages %}
-            {% if message.user == request.user %}
-            <div class="message darker">
-                <img src="{{ message.user.avatar.url }}" alt="Avatar" class="right" style="width:100%;">
-                <div>
-                    <p class="room_username" style="justify-self: end;">{{ message.user.username }}</p>
-                    <p class="room_text">{{ message.content }}</p>
-                    <span class="time-left">{{ message.date_added }}</span>
-                </div>
-                
-            </div>
-            {% else %}
-            <div class="message">
-                <img src="{{ message.user.avatar.url }}" alt="Avatar" style="width:100%;">
-                <div>
-                    <p class="room_username">{{ message.user.username }}</p>
-                    <p class="room_text">{{ message.content }}</p>
-                    <span class="time-right">{{ message.date_added }}</span>
-                </div>
-            </div>
-            {% endif %}
-        {% endfor %}
+    <div class="room_message">
+        <div class="chat-messages" id="chat-messages">
+            {% for message in messages %}
+                {% if message.user == request.user %}
+                    <div class="message darker">
+                        <img src="{{ message.user.avatar.url }}" alt="Avatar" class="right" style="width:100%;">
+                        <div>
+                            <p class="room_username" style="justify-self: end;">{{ message.user.username }}</p>
+                            <p class="room_text">{{ message.content }}</p>
+                            <span class="time-left">{{ message.date_added }}</span>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="message">
+                        <img src="{{ message.user.avatar.url }}" alt="Avatar" style="width:100%;">
+                        <div>
+                            <p class="room_username">{{ message.user.username }}</p>
+                            <p class="room_text">{{ message.content|safe }}</p>
+                            <span class="time-right">{{ message.date_added }}</span>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
-</div>
-<form method="post" action="." class="flex">
+    <form method="post" action="." class="flex">
 
-    <div class="room_input_div">
-        <input type="text" name="content" class="room_input" placeholder="Your message..." id="chat-message-input">
-
-        <button 
-            style="
+        <div class="room_input_div">
+            <input type="text" name="content" class="room_input"
+                   placeholder="Your message..."
+                   id="chat-message-input">
+            <button
+                    style="
                 margin: 10px 0;
                 background-color: rgb(189, 189, 189);
-                border: none;" 
-            class="room_button"
-            id="chat-message-submit"
-        >Submit</button>
-    </div>
-</form>
+                border: none;"
+                    class="room_button"
+                    id="chat-message-submit">
+                Submit
+            </button>
+        </div>
+    </form>
 
 {% endblock %}
 
 {% block scripts %}
-{{ room.slug|json_script:"json-roomname" }}
-{{ request.user.username|json_script:"json-username" }}
+    {{ room.slug|json_script:"json-roomname" }}
+    {{ request.user.username|json_script:"json-username" }}
 
-<script>
-    const roomName = JSON.parse(document.getElementById('json-roomname').textContent);
-    const userName = JSON.parse(document.getElementById('json-username').textContent);
+    <script>
+        const roomName = JSON.parse(document.getElementById('json-roomname').textContent);
+        const userName = JSON.parse(document.getElementById('json-username').textContent);
 
-    const chatSocket = new WebSocket(
-        'ws://'
-        + window.location.host
-        + '/ws/'
-        + roomName
-        + '/'
-    );
+        const chatSocket = new WebSocket(
+            'ws://'
+            + window.location.host
+            + '/ws/'
+            + roomName
+            + '/'
+        );
 
-    chatSocket.onmessage = function(e) {
-        console.log('onmessage')
+        chatSocket.onmessage = function (e) {
+            console.log('onmessage')
 
-        const data = JSON.parse(e.data);
+            const data = JSON.parse(e.data);
 
-        if (data.message) {
-            let html = '<div class="message darker">';
+            if (data.message) {
+                let html = '<div class="message darker">';
                 html += '<div>';
                 html += '<p class="room_username" style="justify-self: end;">' + data.username + '</p>';
                 html += '<p class="room_text" style="justify-self: end;">' + data.message + '</p>';
-                html += '<span class="time-left">' +  + '</span></div></div>';
+                html += '<span class="time-left">' + +'</span></div></div>';
 
-            document.querySelector('#chat-messages').innerHTML += html;
+                document.querySelector('#chat-messages').innerHTML += html;
 
-            scrollToBottom();
-        } else {
-            alert('The message was empty!');
+                scrollToBottom();
+            } else {
+                alert('The message was empty!');
+            }
         }
-    }
 
-    chatSocket.onclose = function(e) {
-        console.log('onclose')
-    }
+        chatSocket.onclose = function (e) {
+            console.log('onclose')
+        }
 
-    //
+        //
 
-    document.querySelector('#chat-message-submit').onclick = function(e) {
-        e.preventDefault();
+        document.querySelector('#chat-message-submit').onclick = function (e) {
+            e.preventDefault();
 
-        const messageInputDom = document.querySelector('#chat-message-input');
-        const message = messageInputDom.value;
+            const messageInputDom = document.querySelector('#chat-message-input');
+            const message = messageInputDom.value;
 
-        chatSocket.send(JSON.stringify({
-            'message': message,
-            'username': userName,
-            'room': roomName
-        }));
+            chatSocket.send(JSON.stringify({
+                'message': message,
+                'username': userName,
+                'room': roomName
+            }));
 
-        messageInputDom.value = '';
+            messageInputDom.value = '';
 
-        return false;
-    }
+            return false;
+        }
 
-    //
+        //
 
-    function scrollToBottom() {
-        const objDiv = document.querySelector('#chat-messages');
-        objDiv.scrollTop = objDiv.scrollHeight;
-    }
+        function scrollToBottom() {
+            const objDiv = document.querySelector('#chat-messages');
+            objDiv.scrollTop = objDiv.scrollHeight;
+        }
 
-    scrollToBottom();
-</script>
+        scrollToBottom();
+    </script>
 {% endblock %}

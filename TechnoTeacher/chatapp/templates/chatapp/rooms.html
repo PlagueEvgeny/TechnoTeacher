@@ -2,19 +2,56 @@
 
 
 {% block content %}
-<div class="room">
+    <div class="room">
         <div class="rooms">
             {% for room in rooms %}
-            <a href="{% url 'chat:room' room.slug %}" class="rooms_link">
-                <div class="rooms_link_div">
-                    {{ room.name }}
-                </div>
-            </a>
+                <a href="{% url 'chat:room' room.slug %}" class="rooms_link">
+                    <div class="rooms_link_div">
+                        {{ room.name }}
+                    </div>
+                </a>
             {% endfor %}
+            <a href="#openModal">Создать комнату</a>
         </div>
+
         <div class="chat">
             {% block chat %}
             {% endblock %}
         </div>
-</div>
+    </div>
+    <div id="openModal" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Создать комнату</h3>
+                    <a href="#close" title="Close" class="close">×</a>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{ form }}
+                        <button type="submit">Создать</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var scrollbar = document.body.clientWidth - window.innerWidth + 'px';
+            console.log(scrollbar);
+            document.querySelector('[href="#openModal"]').addEventListener('click', function () {
+                document.body.style.overflow = 'hidden';
+                document.querySelector('#openModal').style.marginLeft = scrollbar;
+            });
+            document.querySelector('[href="#close"]').addEventListener('click', function () {
+                document.body.style.overflow = 'visible';
+                document.querySelector('#openModal').style.marginLeft = '0px';
+            });
+        });
+    </script>
+
 {% endblock %}
