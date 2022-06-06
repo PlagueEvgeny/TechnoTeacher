@@ -1,5 +1,7 @@
 import django.contrib.auth as auth
 from django.contrib import messages
+from django.contrib.auth.models import Group
+
 from authapp.models import UserProfile
 from mainapp.models import Order, Course
 from django.http import HttpResponseRedirect
@@ -34,7 +36,10 @@ def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            if user.role == 't':
+                user.groups.add(Group.objects.get(name='teacher'))
+                user.is_staff = 1
             return HttpResponseRedirect(reverse('auth:login'))
     else:
         form = RegisterForm()

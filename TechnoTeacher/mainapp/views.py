@@ -121,7 +121,7 @@ def course_teacher_detail(request, course):
         'title': f"{course.name}"
     }
 
-    return render(request, "mainapp/teacher/course_teacher_detail.html", context)
+    return render(request, "mainapp/course.html", context)
 
 
 def course_create(request):
@@ -267,4 +267,4 @@ def task_finish(request, pk):
     task = Task.objects.get(id=pk)
     task.finish()
     messages.success(request, 'Задача выполена')
-    return HttpResponseRedirect(reverse('main:course_order'))
+    return HttpResponseRedirect(reverse('main:course_order', kwargs={'course': task.course.slug}))
