@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -14,6 +15,7 @@ def rooms(request):
         form = RoomForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Комната создана')
             return HttpResponseRedirect(reverse('chat:rooms'))
     else:
         form = RoomForm()

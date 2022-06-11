@@ -7,6 +7,7 @@ from authapp.models import UserProfile
 
 from .models import Message, Room
 
+
 class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         self.room_name = self.scope['url_route']['kwargs']['room_name']
@@ -42,7 +43,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 'room': room,
             }
         )
-    
+
     async def chat_message(self, event):
         message = event['message']
         username = event['username']

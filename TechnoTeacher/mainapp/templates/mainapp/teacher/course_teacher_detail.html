@@ -1,45 +1,82 @@
 {% extends 'mainapp/base.html' %}
 {% block content %}
-{% load static %}
-<script type="text/javascript">
-$(document).ready(function(){
-    $("ul").hide();
-    $("ul li:odd").css("background-color", "#efefef");
-    $("h1 span").click(function(){
-    $(this).parent().next().slideToggle();
-    });
-});
-</script>
-<form action="" id="course_form" method="post" enctype="multipart/form-data">
-{% csrf_token %}
-<div class="course">
-    <div style="display: grid;">
-        <h1 class="about_course_h1">
-    <input type="text" id="id_name" name='name' placeholder="Название" class="course_form" value="{{form.name}}">
-        </h1>
-        <p class="about_course_p">{{form.desc}}</p>
-        <button class="button-profile" type="submit"> Изменить </button>
-    </div>
-    <div class="course_cover">
-        <img src="{{course.cover.url}}" class="about_course_cover" alt="">
-    </div>
-</div>
-<div class="content_course">
-    <div>
-        <h1 class="content_course_title">Содержание курса</h1>
-
-        {% for item in form.course_task.all %}
-        <div class="course_list_content">
-            <h1 class="course_list_content_title"><input id="id_name" type='text' name="name" value="{{item.name}}"><span class="expand">+</span></h1>
-            <ul class="course_list_content_ul">
-                {% for task in item.content_task.all %}
-                <li class="course_list_content_li">{{task.name}}</li>
-                {% endfor %}
-            </ul>
+    {% load static %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="course">
+            <div style="display: grid;">
+                <input type="text" value="{{ course.name }}" id="id_name" name="name" class="name_course_edit">
+                <textarea type="text" id="id_desc" name='desc' placeholder="Краткое описание" class="desc_course_edit">
+                        {{ course.desc|linebreaksbr|safe }}
+                    </textarea>
+                <div style="align-self: flex-end; justify-self: baseline;">
+                    <button class="update_course">Изменить описание курса</button>
+                </div>
+            </div>
+            <div class="course_cover">
+                <label style="cursor:pointer;">
+                    <img src="{{ course.cover.url }}" alt="avatar" class="profile_image">
+                    <input type="file" alt="avatar" id="id_avatar" name="avatar" accept="image/*">
+                </label>
+            </div>
         </div>
-        {% endfor %} 
-        <button class="button-profile" type="submit"> Изменить </button>
+        <div class="content_course">
+            <div>
+                <h1 class="content_course_title">Содержание курса</h1>
+                {% for item in content %}
+                    <div class="course_list_content">
+                        <h1 class="course_list_content_title"><a href="{% url "main:content_remove" item.id %}">X </a> {{ item.name }}<span class="expand">+</span></h1>
+                        <ul class="course_list_content_ul">
+                            {% for task in item.content_task.all %}
+                                <li class="course_list_content_li">{{ task.name }}</li>
+                            {% endfor %}
+                            <li class="course_list_content_li"><a href="{% url "main:task_create" %}">Создать задание</a></li>
+                        </ul>
+                    </div>
+                {% endfor %}
+                <div class="course_list_content">
+                    <h1 class="course_list_content_title"><a href="#openModalcontent">Добавить пункт</a></h1>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div id="openModalcontent" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Добавить пункт содержания</h3>
+                    <a href="#close" title="Close" class="close">×</a>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{ form_content }}
+                        <button type="submit">Создать</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-</form>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("ul").hide();
+            $("ul li:odd").css("background-color", "#efefef");
+            $("h1 span").click(function () {
+                $(this).parent().next().slideToggle();
+            });
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            var scrollbar = document.body.clientWidth - window.innerWidth + 'px';
+            console.log(scrollbar);
+            document.querySelector('[href="#openModal"]').addEventListener('click', function () {
+                document.body.style.overflow = 'hidden';
+                document.querySelector('#openModal').style.marginLeft = scrollbar;
+            });
+            document.querySelector('[href="#close"]').addEventListener('click', function () {
+                document.body.style.overflow = 'visible';
+                document.querySelector('#openModal').style.marginLeft = '0px';
+            });
+        });
+    </script>
 {% endblock %}

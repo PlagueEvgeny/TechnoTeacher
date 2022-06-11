@@ -1,16 +1,15 @@
 {% extends 'mainapp/base.html' %}
 {% block content %}
-{% load static %}
+    {% load static %}
     <div class="content_cource">
         <div>
             <h1 class="content_h1 title_cource">Направления</h1>
-            {% for item in category %}
-            <a href="{% url 'main:category' item.id item.slug %}" >
-                <div class="link_cource">
-                    {{ item.name }}
-                </div>
-            </a>
-            {% endfor %}
+            <form action="{% url "main:category" %}">
+                {% for item in category %}
+                        <button class="link_cource" value="{{ item.name }}"
+                                name="filter">{{ item.name }}</button>
+                {% endfor %}
+            </form>
         </div>
         <div></div>
     </div>
@@ -22,9 +21,9 @@
     </div>
     <div class="content_events">
         {% for item in event %}
-        <div class="content_events_item">
-            <img src="{{ item.images.url }}" alt="Avatar" class="events_image">
-        </div>
+            <div class="content_events_item">
+                <img src="{{ item.images.url }}" alt="Avatar" class="events_image">
+            </div>
         {% endfor %}
     </div>
 

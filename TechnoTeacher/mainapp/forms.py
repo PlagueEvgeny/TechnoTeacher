@@ -1,7 +1,7 @@
 from django import forms
 from django.forms.widgets import HiddenInput
 from djangocodemirror.fields import CodeMirrorField
-from mainapp.models import Course, Task, Content, Sollution
+from mainapp.models import Course, Task, Content, Sollution, ContactEvent
 
 
 class CourseForm(forms.ModelForm):
@@ -45,14 +45,14 @@ class TaskForm(forms.ModelForm):
             'content',
             'name',
             'desc',
-            'status',
+            'difficulty',
             'test',
         )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for name, item in self.fields.items():
-            item.widget.attrs['class'] = 'task_form'
+            item.widget.attrs['class'] = 'course_form'
 
 
 class CodeForm(forms.ModelForm):
@@ -69,3 +69,14 @@ class CodeForm(forms.ModelForm):
             item.widget.attrs['id'] = 'codes'
             if name == 'task':
                 item.widget = HiddenInput()
+
+
+class ContactEventForm(forms.ModelForm):
+    class Meta:
+        model = ContactEvent
+        fields = '__all__'
+
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            for name, item in self.fields.items():
+                item.widget.attrs['class'] = 'contact-events'

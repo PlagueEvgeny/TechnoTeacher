@@ -1,6 +1,6 @@
 .about_top{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 400px 1fr;
     gap: 30px;
     background-color: rgb(241, 241, 241);
     padding: 30px;
@@ -88,4 +88,7 @@
     width: 50px;
     justify-items: center;
     display: grid;
+}
+.img-about{
+    width: 60%;
 }

@@ -1,23 +1,42 @@
 {% extends 'mainapp/base.html' %}
+{% load static %}
 {% block content %}
-        <form action="" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="login_form">
-                <div>
-                </div>
-                <div class="login_form_div">
-                    <p class="login_form_p">Войти через соцсети</p>
-
-                    <p class="login_form_p">Войти через email</p>
-                    <input type="text" class="form-profile" id="id_username" name="username" value="{{ user.username }}" placeholder="Логин">
-                    <input type="password" class="form-profile" id="id_password" name="password" value="{{ user.password }}" placeholder="Пароль">
-                    <div class="login_form_button">
-                        <button type="submit" class="button-profile form-profile button_login">Войти</button>
-                        <a href="{% url 'auth:register' %}" class="a_register button_login button-profile form-profile">Зарегистрироваться</a>
+    {% if messages %}
+        <ul class="alert">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"
+                                         style="list-style: none; text-align: center" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="login_form">
+            <div>
+            </div>
+            <div class="login_form_div">
+                <p class="login_form_p">Войти через соцсети</p>
+                <div class="login_social">
+                    <div></div>
+                    <div style="text-align: center;">
+                        <a href="{% url "social:begin" backend='vk-oauth2' %}">
+                            <img src="{% static 'img/icon/lvk.png' %}" class="avatar-3" data-toggle="tooltip">
+                        </a>
                     </div>
+                    <div></div>
                 </div>
-                <div>
+                <p class="login_form_p">Войти через email</p>
+                <input type="text" class="form-profile" id="id_username" name="username" value="{{ user.username }}"
+                       placeholder="Логин">
+                <input type="password" class="form-profile" id="id_password" name="password" value="{{ user.password }}"
+                       placeholder="Пароль">
+                <div class="login_form_button">
+                    <button type="submit" class="button-profile form-profile button_login">Войти</button>
+                    <a href="{% url 'auth:register' %}" class="a_register button_login button-profile form-profile">Зарегистрироваться</a>
                 </div>
             </div>
-        </form>
+            <div>
+            </div>
+        </div>
+    </form>
 {% endblock %}

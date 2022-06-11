@@ -1,0 +1,35 @@
+{% extends "mainapp/base.html" %}
+{% load static %}
+{% block content %}
+    <div class="event-detail">
+        <div>
+            <img src="{{ events.images.url }}" alt="" class="event-detail-image">
+        </div>
+    </div>
+    <div class="event-detail">
+        <h1 style="font-size: 42px;">{{ events.name }}</h1>
+        <p style="font-size: 20px;">{{ events.desc }}</p>
+    </div>
+    <div class="event-detail" style="margin: 50px 0;">
+
+        <div class="event-detail-forms">
+            <div>
+                <h1 style="font-size: 32px;">Записаться на мероприятия</h1>
+            </div>
+            <div>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="text" name="name" maxlength="254" required id="id_name" class="contact-events"
+                           placeholder="Имя">
+                    <input type="email" name="email" maxlength="254" required id="id_email" class="contact-events"
+                           placeholder="Почта">
+                    <input type="tel" name="phone_number" maxlength="254" required id="id_phone_number"
+                           class="contact-events" placeholder="Номер телефона">
+                    <input type="submit" value="Записаться" class="button-contact contact-events">
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

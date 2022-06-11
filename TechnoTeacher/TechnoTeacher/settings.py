@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-q5zvhidme^4!scixcc8-4n9v+fuh+%oz!7jb5h0z$l@om)5i=$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'djangocodemirror',
     'debug_toolbar',
+    'social_django',
     'mainapp',
     'authapp',
     'channels',
@@ -71,6 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
             ],
         },
     },
@@ -92,8 +94,16 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+
     }
 }
+#
+# 'ENGINE': 'django.db.backends.postgresql',
+# 'NAME': 'db',
+# 'USER': 'postgres',
+# 'PASSWORD': 'admin',
+# 'HOST': '127.0.0.1',
+# 'PORT': '5432',
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -149,3 +159,12 @@ CODEMIRROR_SETTINGS = codemirror_settings_update(CODEMIRROR_SETTINGS, {
     'lineNumber': False,
     'indent': 4
 })
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.vk.VKOAuth2',  # бекенд авторизации через ВКонтакте
+    'django.contrib.auth.backends.ModelBackend',
+    # бекенд классической аутентификации, чтобы работала авторизация через обычный логин и пароль
+)
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = '8188981'
+SOCIAL_AUTH_VK_OAUTH2_SECRET = 'Ymm4dx1p52Fq2VPQwqIu'

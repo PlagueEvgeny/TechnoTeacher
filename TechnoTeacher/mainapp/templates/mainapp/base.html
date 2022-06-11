@@ -3,72 +3,80 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{% static 'img/icon.png' %}" type="image/png">
     <title>{{ title|default:"TechnoTeacher"|capfirst }}</title>
     {% block css %}
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <link rel="stylesheet" href="{% static 'css/content.css' %}">
-    <link rel="stylesheet" href="{% static 'css/course.css' %}">
-    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
-    <link rel="stylesheet" href="{% static 'css/chat.css' %}">
-    <link rel="stylesheet" href="{% static 'css/about.css' %}">
-    <link rel="stylesheet" href="{% static 'css/teacher.css' %}">
-    <link rel="stylesheet" href="{% static 'css/events.css' %}">
-    <link rel="stylesheet" href="{% static 'css/task.css' %}">
-    <link rel="stylesheet" href="{% static 'css/room.css' %}">
-    <link rel="stylesheet" href="http://codemirror.net/lib/codemirror.css">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <link rel="stylesheet" href="{% static 'css/content.css' %}">
+        <link rel="stylesheet" href="{% static 'css/course.css' %}">
+        <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+        <link rel="stylesheet" href="{% static 'css/chat.css' %}">
+        <link rel="stylesheet" href="{% static 'css/about.css' %}">
+        <link rel="stylesheet" href="{% static 'css/teacher.css' %}">
+        <link rel="stylesheet" href="{% static 'css/events.css' %}">
+        <link rel="stylesheet" href="{% static 'css/task.css' %}">
+        <link rel="stylesheet" href="{% static 'css/room.css' %}">
+        <link rel="stylesheet" href="{% static 'css/codemirror.css' %}">
     {% endblock %}
     {% block js %}
-    <script src="http://codemirror.net/lib/codemirror.js"></script>
-    <script src="http://codemirror.net/mode/javascript/javascript.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="{% static 'js/codemirror.js' %}"></script>
+        <script src="{% static 'js/javascript.js' %}"></script>
+        <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
     {% endblock %}
 
 </head>
 <body>
 {% block header %}
-<header class="header">
-    <div>
-        <a href="{% url 'main:index' %}">TechnoTeacher</a>
-    </div>
-    <div>
-        <a href="" class="link_all_cource">Все курсы</a>
-    </div>
-    <div class="nav">
-        <div class="media">
-            <div></div>
-            <div>
-                <a href="{% url 'main:about' %}" class="nav_link">О TechnoTeacher</a>
+    <header class="header">
+        <a href="{% url 'main:index' %}" class="link-logo">
+            <div class="div-logo">
+                <img src="{% static "img/logo.png" %}" alt="" class="logo">
             </div>
-            <div>
-                <a href="{% url 'main:events' %}" class="nav_link">Мероприятия</a>
-            </div>
-            <div></div>
-        </div>
-        <div class="login">
-            {% if user.is_authenticated %}
-            <div>
-                <a href="{% url 'chat:rooms' %}" class="nav_link">Сообщения</a>
-            </div>
-            <div>
-                <a href="{% url 'auth:profile' %}" class="nav_link">Личный кабинет</a>
-            </div>
-            <div>
-                <a href="{% url 'auth:logout' %}" class="nav_link">Выйти</a>
-            </div>
+        </a>
+        <div>
+            {% if user.is_staff %}
+                <a href="{% url "admin:index" %}" class="link_all_cource">Админка</a>
             {% else %}
-            <div></div>
-            <div></div>
-            <div>
-                <a href="{% url 'auth:login' %}" class="nav_link">Войти</a>
-            </div>
+                <a href="{% url "main:category" %}" class="link_all_cource">Все курсы</a>
             {% endif %}
+
         </div>
-    </div>
-</header>
+        <div class="nav">
+            <div class="media">
+                <div></div>
+                <div>
+                    <a href="{% url 'main:about' %}" class="nav_link">О TechnoTeacher</a>
+                </div>
+                <div>
+                    <a href="{% url 'main:events' %}" class="nav_link">Мероприятия</a>
+                </div>
+                <div></div>
+            </div>
+            <div class="login">
+                {% if user.is_authenticated %}
+                    <div>
+                        <a href="{% url 'chat:rooms' %}" class="nav_link">Сообщения</a>
+                    </div>
+                    <div>
+                        <a href="{% url 'auth:profile' %}" class="nav_link">Личный кабинет</a>
+                    </div>
+                    <div>
+                        <a href="{% url 'auth:logout' %}" class="nav_link">Выйти</a>
+                    </div>
+                {% else %}
+                    <div></div>
+                    <div></div>
+                    <div>
+                        <a href="{% url 'auth:login' %}" class="nav_link">Войти</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </header>
 {% endblock %}
 <div class="content">
-{% block content %}
-{% endblock %}
+    {% block content %}
+    {% endblock %}
 </div>
 <footer class="footer">
     <div>© 2022 Pl.Engineer.</div>

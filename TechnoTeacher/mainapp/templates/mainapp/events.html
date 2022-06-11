@@ -2,18 +2,20 @@
 {% load static %}
 {% block content %}
 
-<div class="event">
-    {% for item in events %}
-    <div class="event-title">
-        <div>
-            <img src="{{ item.images.url }}" alt="" class="event-images">
-        </div>
-        <div>
-            <h1 class="event-h1"> {{ item.name }} </h1>
-            <p> {{ item.desc }} </p>
-        </div>
+    <div class="event">
+        {% for item in events %}
+            <a href="{% url "main:events_detail" item.id %}">
+                <div class="event-title">
+                    <div class="event_image">
+                        <img src="{{ item.images.url }}" alt="" class="event-images">
+                    </div>
+                    <div>
+                        <h1 class="event-h1"> {{ item.name }} </h1>
+                        <time>{{ item.date }}</time>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
 
 {% endblock %}

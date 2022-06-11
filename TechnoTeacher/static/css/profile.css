@@ -184,3 +184,12 @@ select {
     padding-top: 10px;
     font-size: 15px;
 }
+.avatar-3{
+    height: 40px;
+}
+.login_social{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-content: center;
+    margin: 5px 0;
+}

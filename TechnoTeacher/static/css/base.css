@@ -4,96 +4,133 @@
     font-size: 16px;
     font-family: Ubuntu, sans-serif;
 }
-body{
+
+body {
     min-height: 100vh;
     display: grid;
     grid-template-rows: auto 1fr auto;
 }
+
 time {
     font-size: 10px;
 }
 
-time > b{
+time > b {
     font-size: 10px;
 
 }
+
 .header {
     display: grid;
     grid-template-columns: 12% 13% 75%;
     min-height: 90px;
     margin: 0 15px;
 }
-.header > div{
+
+.header > div {
     line-height: 90px;
     margin: 0 10px;
     text-align: center;
+}
+
+.link-logo {
+    max-height: 90px;
+    display: grid;
+}
+
+.div-logo {
+    max-height: 90px;
+    justify-items: center;
+    display: inline-grid;
+    align-items: center;
+}
+
+.logo {
+    width: 50%;
 }
 
 .nav {
     display: grid;
     grid-template-columns: 60% 40%;
 }
-.media{
+
+.media {
     display: grid;
     grid-template-columns: 25% 30% 25% 20%;
     margin: 0 5px;
     text-align: center;
 }
-.login{
+
+.login {
     display: grid;
     grid-template-columns: 32% 42% 26%;
     margin: 0 5px;
 
 }
-a{
+
+a {
     text-decoration: none;
-    color:black;
+    color: black;
 }
-.link_all_cource{
+
+.link_all_cource {
     border-color: black;
     border-width: 1px;
     border-style: solid;
 }
-.nav_link, .link_all_cource{
+
+.nav_link, .link_all_cource {
     border-radius: 50px;
     padding: 10px;
 }
-.nav_link:hover{
+
+.nav_link:hover {
     background-color: rgb(241, 241, 241);
 }
-.link_all_cource:hover{
+
+.link_all_cource:hover {
     background-color: #44883c;
     border-width: 0;
     color: #fff;
 }
 
+.alert {
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
 
 
-
-
-
-.footer{
+.footer {
     display: grid;
     grid-template-columns: 12% 75% 13%;
     height: 70px;
     margin: 100px 15px 0 15px;
 }
 
-.footer > div{
+.footer > div {
     line-height: 70px;
     margin: 0 10px;
     text-align: center;
 }
-.footer_image{
+
+.footer_image {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-content: center;
 }
-.footer_img{
+
+.footer_img {
     height: 14px;
     width: 14px;
 }
-.footer_link{
+
+.footer_link {
     padding: 5px;
     background-color: rgb(241, 241, 241);
     border-radius: 5px;
@@ -101,10 +138,9 @@ a{
 }
 
 
-
 @font-face {
-    font-family: "Ubuntu";  
-    src: url("../fonts/Ubuntu/Ubuntu-Regular.ttf") format("truetype"); 
-    font-style: normal; 
+    font-family: "Ubuntu";
+    src: url("../fonts/Ubuntu/Ubuntu-Regular.ttf") format("truetype");
+    font-style: normal;
     font-weight: normal;
 }

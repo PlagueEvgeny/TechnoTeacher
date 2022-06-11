@@ -8,6 +8,7 @@ urlpatterns = [
     path('auth/', include('authapp.urls', namespace='auth')),
     path('chat/', include('chatapp.urls', namespace='chat')),
     path('__debug__/', include('debug_toolbar.urls')),
+    path('', include('social_django.urls', namespace='social')),
     path('admin/', admin.site.urls),
 ]
 

@@ -1,0 +1,21 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+    {% load static %}
+    <div class="create_course_from">
+        <div></div>
+        <div>
+            <form action="" id="course_form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.course }}
+                {{ form.content }}
+                {{ form.name }}
+                {{ form.desc }}
+                {{ form.difficulty }}
+                <input type="file" name="test" class="task_form" required=""
+                                                         id="id_test">
+                <button class="button-profile form-profile">Сохранить</button>
+
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,107 +1,123 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
 {% block content %}
-<form action="{% url 'auth:profile' %}" method="post" enctype="multipart/form-data">
-    <div class="profile_top_about">
-        <div></div>
-        <div class="top_about">
-            <div class="about_image">
-                <label style="cursor:pointer;">
-                    <img src="{{user.avatar.url}}" alt="avatar" class="profile_image">
-                    <input type="file" alt="avatar" id="id_avatar" name="avatar" accept="image/*">
-                </label>
-            </div>
-            <div>
-                <p class="profile_last">{{ user.last_name }} {{ user.first_name }}</p>
-                <span class="profile_email">
+    {% if messages %}
+        <ul class="alert">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"
+                                         style="list-style: none; text-align: center" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form action="{% url 'auth:profile' %}" method="post" enctype="multipart/form-data">
+        <div class="profile_top_about">
+            <div></div>
+            <div class="top_about">
+                <div class="about_image">
+                    <label style="cursor:pointer;">
+                        <img src="{{ user.avatar.url }}" alt="avatar" class="profile_image">
+                        <input type="file" alt="avatar" id="id_avatar" name="avatar" accept="image/*">
+                    </label>
+                </div>
+                <div>
+                    <p class="profile_last">{{ user.last_name }} {{ user.first_name }}</p>
+                    <span class="profile_email">
                     {{ user.email }}
                 </span>
+                </div>
+            </div>
+            <div></div>
+        </div>
+        <div class="profile_about">
+            <div class="about_form">О себе
+            </div>
+            <div>
+                <ui-sb-input class="ui_input">
+                    {% csrf_token %}
+                    <label for="id_id">Ваш id
+                        <input type="text" class="form-profile" id="id_id" name="id" value="{{ user.id }}"
+                               placeholder="id" disabled></label>
+                    <label for="id_first_name"></label>
+                    <input type="text" class="form-profile" id="id_first_name" name="first_name"
+                           value="{{ user.first_name }}" placeholder="Имя">
+                    <label for="id_last_name"></label>
+                    <input type="text" class="form-profile" id="id_last_name" name="last_name"
+                           value="{{ user.last_name }}" placeholder="Фамилия">
+                    <label for="id_username"></label>
+                    <input type="text" class="form-profile" id="id_username" name="username" value="{{ user.username }}"
+                           placeholder="Логин">
+                    <label for="id_email"></label>
+                    <input type="email" class="form-profile" id="id_email" name="email" value="{{ user.email }}"
+                           placeholder="Почта">
+                    <button type="submit" class="button-profile form-profile">Сохранить</button>
+                </ui-sb-input>
+
             </div>
         </div>
-        <div></div>  
-    </div>
-    <div class="profile_about">  
-        <div class="about_form">О себе
+    </form>
+    <form action="{% url 'auth:profile' %}" method="post" enctype="multipart/form-data">
+        <div class="password_about">
+            <div class="about_form">Пароли</div>
+            <div>
+                <ui-sb-input class="ui_input">
+                    {% csrf_token %}
+                    <label for="id_password"></label>
+                    <input type="password" class="form-profile" id="id_password" name="password"
+                           value="{{ user.password }}" placeholder="Текущий пароль">
+                    <label for="id_password1"></label>
+                    <input type="password" class="form-profile" id="id_password1" name="password1"
+                           value="{{ user.password1 }}" placeholder="Новый пароль">
+                    <label for="id_password2"></label>
+                    <input type="password" class="form-profile" id="id_password2" name="password2"
+                           value="{{ user.password2 }}" placeholder="Повторить пароль">
+                    <button type="submit" class="button-profile form-profile">Изменить</button>
+                </ui-sb-input>
+            </div>
         </div>
-        <div>
-            <ui-sb-input class="ui_input">
-                {% csrf_token %}
-                <label for="id_id">Ваш id
-                <input type="text" class="form-profile" id="id_id" name="id" value="{{ user.id }}" placeholder="id" disabled></label>
-                <label for="id_first_name"></label>
-                <input type="text" class="form-profile" id="id_first_name" name="first_name" value="{{ user.first_name }}" placeholder="Имя">
-                <label for="id_last_name"></label>
-                <input type="text" class="form-profile" id="id_last_name" name="last_name" value="{{ user.last_name }}" placeholder="Фамилия">
-                <label for="id_username"></label>
-                <input type="text" class="form-profile" id="id_username" name="username" value="{{ user.username }}" placeholder="Логин">
-                <label for="id_email"></label>
-                <input type="email" class="form-profile" id="id_email" name="email" value="{{ user.email }}" placeholder="Почта">
-                <button type="submit" class="button-profile form-profile">Сохранить</button>
-            </ui-sb-input>
-        
+    </form>
+    <div class="user_order">
+        <div class="about_form">Ваши курсы</div>
+        <div class="user_order_div">
+            {% if order %}
+                {% for item in order %}
+                    <a href="{% url 'main:course' item.course.category_id item.course.slug %}" class="order_card">
+                        <div class="order_card_top">
+                            <h1 class="order_card_h">
+                                {{ item.course.name|capfirst }}
+                            </h1>
+                            <div class="order_card_top_div">
+                                <img src="{% static 'img/icon/paz.svg' %}" alt="" class="order_card_top_image">
+                            </div>
+                        </div>
+                        <p class="order_card_p">{{ item.course.desc|capfirst|truncatechars:100 }}</p>
+                    </a>
+                {% endfor %}
+            {% else %}
+                <h3>Вы еще не приобрели не один курс</h3>
+            {% endif %}
         </div>
     </div>
-</form>
-<form action="{% url 'auth:profile' %}" method="post" enctype="multipart/form-data">
-    <div class="password_about">
-        <div class="about_form">Пароли</div>
-        <div>
-            <ui-sb-input class="ui_input">
-                {% csrf_token %}
-                <label for="id_password"></label>
-                <input type="password" class="form-profile" id="id_password" name="password" value="{{ user.password }}" placeholder="Текущий пароль">
-                <label for="id_password1"></label>
-                <input type="password" class="form-profile" id="id_password1" name="password1" value="{{ user.password1 }}" placeholder="Новый пароль">
-                <label for="id_password2"></label>
-                <input type="password" class="form-profile" id="id_password2" name="password2" value="{{ user.password2 }}" placeholder="Повторить пароль">
-                <button type="submit" class="button-profile form-profile">Изменить</button>
-            </ui-sb-input>
+    {% if user.role == 't' %}
+        <div class="user_order">
+            <div class="about_form">Преподавание</div>
+            <div class="about_form_all_course">
+                <a href="{% url 'main:course_teacher' %}">Все курсы</a>
+            </div>
+            <div></div>
+            <div class="user_order_div">
+                {% for item in course %}
+                    <a href="{% url 'main:course_teacher_detail' item.slug %}" class="order_card">
+                        <div class="order_card_top">
+                            <h1 class="order_card_h">{{ item.name }}
+                            </h1>
+                            <div class="order_card_top_div">
+                                <img src="{% static 'img/icon/paz.svg' %}" alt="" class="order_card_top_image">
+                            </div>
+                        </div>
+                        <p class="order_card_p"></p>
+                    </a>
+                {% endfor %}
+            </div>
         </div>
-    </div>
-</form>
-<div class="user_order">
-    <div class="about_form">Ваши курсы</div>
-    <div class="user_order_div">
-        {% if order %}
-        {% for item in order %}
-            <a href="{% url 'main:course' item.course.category_id item.course.slug %}" class="order_card">
-                <div class="order_card_top">
-                    <h1 class="order_card_h">
-                        {{ item.course.name|capfirst }}
-                    </h1>
-                    <div class="order_card_top_div">
-                        <img src="{% static 'img/icon/paz.svg' %}" alt="" class="order_card_top_image">
-                    </div>
-                </div>
-                <p class="order_card_p">{{ item.course.desc|capfirst|truncatechars:100 }}</p>
-        </a>
-        {% endfor %}
-    {% else %}
-        <h3>Вы еще не приобрели не один курс</h3>
     {% endif %}
-    </div>
-</div>
-{% if user.role == 't' %}
-<div class="user_order">
-    <div class="about_form">Преподавание</div>
-    <div class="about_form_all_course">
-        <a href="{%url 'main:course_teacher'%}">Все курсы</a>
-    </div>
-    <div></div>
-    <div class="user_order_div">
-        {% for item in course %}
-            <a href="{% url 'main:course_teacher_detail' item.slug%}" class="order_card">
-                <div class="order_card_top">
-                    <h1 class="order_card_h">{{item.name}}
-                    </h1>
-                    <div class="order_card_top_div">
-                        <img src="{% static 'img/icon/paz.svg' %}" alt="" class="order_card_top_image">
-                    </div>
-                </div>
-                <p class="order_card_p"></p>
-            </a>
-        {% endfor %}
-    </div>
-</div>
-{% endif %}
 {% endblock %}
